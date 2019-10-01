@@ -1,29 +1,32 @@
-mq:
-  queue1:
-    disabled: false
-    app-description: Queue1
-    app-name: Queue1 dockermq
-    channel: DEV.ADMIN.SVRCONN
-    host: ibm.mq1
-    password: passw0rd
-    username: admin
-    port: 1414
-    queue-manager: QM1
-    listen-topic: DEV.QUEUE.1
-    publish-topic: DEV.QUEUE.2
-    concurrent: 3
-    pubSub: false
-  queue2:
-    disabled: false
-    app-description: Queue2
-    app-name: Queue2 dockermq
-    channel: DEV.ADMIN.SVRCONN
-    host: ibm.mq2
-    password: passw0rd
-    username: admin
-    port: 1414
-    queue-manager: QM1
-    listen-topic: DEV.QUEUE.2
-    publish-topic: DEV.QUEUE.3
-    concurrent: 3
-    pubSub: false
+spring:
+  application:
+    ibm:
+      mq:
+        queue1:
+          disabled: false
+          app-description: Queue1
+          app-name: Queue1 dockermq
+          channel: DEV.ADMIN.SVRCONN
+          host: ibm.mq
+          password: passw0rd
+          username: admin
+          port: 1414
+          queue-manager: QM1
+          listen-topic: DEV.QUEUE.1
+          publish-topic: DEV.QUEUE.2
+          concurrent: 3
+          pubSub: false
+        queue2:
+          disabled: false
+          app-description: Queue2
+          app-name: Queue2 dockermq
+          channel: DEV.ADMIN.SVRCONN
+          host: ibm.mq
+          password: passw0rd
+          username: admin
+          port: 1414
+          queue-manager: QM1
+          listen-topic: DEV.QUEUE.2
+          publish-topic: DEV.QUEUE.3
+          concurrent: 3
+          pubSub: false

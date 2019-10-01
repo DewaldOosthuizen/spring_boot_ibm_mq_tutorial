@@ -25,15 +25,17 @@ public class MQConnectionFactory {
      * @param config  the config
      * @return the default jms listener container factory
      */
-    public DefaultJmsListenerContainerFactory defaultJmsListenerContainerFactory(ConnectionFactory factory, MQConfig config) {
-        DefaultJmsListenerContainerFactory containerFactory = new DefaultJmsListenerContainerFactory();
+    public DefaultJmsListenerContainerFactory defaultJmsListenerContainerFactory(
+            ConnectionFactory factory, MQConfig config) {
+        DefaultJmsListenerContainerFactory containerFactory =
+                new DefaultJmsListenerContainerFactory();
         containerFactory.setConnectionFactory(factory);
         containerFactory.setConcurrency(config.getConcurrent());
         containerFactory.setSessionAcknowledgeMode(Session.CLIENT_ACKNOWLEDGE);
         containerFactory.setSessionTransacted(true);
         containerFactory.setReceiveTimeout(5000L);
-        containerFactory.setPubSubDomain(config.isPubSub()); //https://www.ibm.com/support/knowledgecenter/SSFKSJ_9.1.0/com.ibm.mq.pro.doc/q004890_.htm
-//        containerFactory.setErrorHandler(new JMSListenerErrorHandler());
+        containerFactory.setPubSubDomain(config.isPubSub()); // https://www.ibm.com/support/knowledgecenter/SSFKSJ_9.1.0/com.ibm.mq.pro.doc/q004890_.htm
+        // containerFactory.setErrorHandler(new JMSListenerErrorHandler());
         return containerFactory;
     }
 
@@ -47,9 +49,11 @@ public class MQConnectionFactory {
     public ConnectionFactory connectionFactory(ConnectionFactory factory, MQConfig config) {
         if (factory == null) {
             MQXAConnectionFactory connectionFactory = new MQXAConnectionFactory();
-            UserCredentialsConnectionFactoryAdapter credentials = new UserCredentialsConnectionFactoryAdapter();
+            UserCredentialsConnectionFactoryAdapter credentials =
+                    new UserCredentialsConnectionFactoryAdapter();
 
-            log.info(String.format("\n /************** MQ CONFIG \n %s \n **************/", config.toString()));
+            log.info(String.format("\n /************** MQ CONFIG \n %s \n **************/",
+                    config.toString()));
 
             try {
                 connectionFactory.setHostName(config.getHost());

@@ -49,17 +49,18 @@ public class JMSTestMessageSender {
         private JmsTemplate jmsTemplate;
 
         /**
-         * Send message. This scheduled task will place messages on the incoming queue
-         * simulation line of business events flowing in from the queue. The real
-         * publisher used to place messages on the outgoing queue is JmsPublisher.java
+         * Send message. This scheduled task will place messages on the incoming queue simulation
+         * line of business events flowing in from the queue. The real publisher used to place
+         * messages on the outgoing queue is JmsPublisher.java
          * 
          * @throws JMSException
          */
-        @Scheduled(fixedDelay = (500 * 1000)) // seconds times 1000 for milliseconds
+        @Scheduled(fixedDelay = (600 * 1000)) // seconds times 1000 for milliseconds
         public void sendTestIncomingMessage() throws JMSException {
                 Event message = createTestEvent();
                 JMSPublisher.publishEvent(config.getListenTopic(),
-                                JmsMessageCreator.createMessage(MQIncomingFactory.factory, message), jmsTemplate);
+                                JmsMessageCreator.createMessage(MQIncomingFactory.factory, message),
+                                jmsTemplate);
         }
 
         /**
@@ -68,7 +69,9 @@ public class JMSTestMessageSender {
          * @return the event message
          */
         public static Event createTestEvent() {
-                return Event.builder().header(Header.builder().messageType("Income").subMessageType("Salary").build())
+                return Event.builder()
+                                .header(Header.builder().messageType("Income")
+                                                .subMessageType("Salary").build())
                                 .id("12345678").name("John").surname("Doe").build();
 
         }

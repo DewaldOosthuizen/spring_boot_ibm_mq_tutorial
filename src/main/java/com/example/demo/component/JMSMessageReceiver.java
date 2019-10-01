@@ -71,18 +71,4 @@ public class JMSMessageReceiver {
             );
             log.info("\n <<<<<<<<<<<<<<<<<<<<<<< Message processed <<<<<<<<<<<<<<<<<<<<<<< \n");
     }
-
-    /**
-     * Receive outgoing exception message.
-     *
-     * @param message the message
-     * @throws JMSException the jms exception
-     */
-    @JmsListener(destination = "${spring.application.ibm.mq.queue2.listen-topic}", containerFactory = "outgoingJmsListenerContainerFactory")
-    public void receiveOutgoingExceptionMessage(TextMessage message) throws JMSException {
-            textMessage = message;
-            JsonObject jsonObject = AppJsonUtils.convertStringToJson(message.getText());
-            log.info("Read exception message from queue: \n <{}> \n :: red exception message from queue ::", 
-                AppJsonUtils.convertToPrettyJsonString(jsonObject));
-    }
 }

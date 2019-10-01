@@ -18,10 +18,7 @@ public class AppJsonUtils {
      * @return the gson
      */
     public static Gson createPrettyGson() {
-        return new GsonBuilder()
-                .setPrettyPrinting()
-                .serializeNulls()
-                .create();
+        return new GsonBuilder().setPrettyPrinting().serializeNulls().create();
     }
 
     /**
@@ -30,9 +27,7 @@ public class AppJsonUtils {
      * @return the gson
      */
     public static Gson createGson() {
-        return new GsonBuilder()
-                .serializeNulls()
-                .create();
+        return new GsonBuilder().serializeNulls().create();
     }
 
     /**

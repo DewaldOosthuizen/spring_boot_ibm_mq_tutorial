@@ -1,4 +1,7 @@
 # Application
-mq:
-  queue1:
-    mock: true
+spring:
+  application:
+    ibm:
+      mq:
+        queue1:
+          mock: true

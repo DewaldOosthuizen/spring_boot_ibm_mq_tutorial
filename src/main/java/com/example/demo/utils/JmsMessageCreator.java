@@ -19,7 +19,8 @@ public class JmsMessageCreator {
      * @return the text message
      * @throws JMSException the jms exception
      */
-    public static TextMessage createMessage(ConnectionFactory factory, Event message) throws JMSException {
+    public static TextMessage createMessage(ConnectionFactory factory, Event message)
+            throws JMSException {
         Connection connection = null;
         Session connectionSession = null;
         try {
