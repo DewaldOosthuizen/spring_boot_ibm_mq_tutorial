@@ -1,11 +1,11 @@
-Version: '3'
+version: "3"
 
 services:
 
   app:
     build:
       context: .
-      dockerfile: dockerfile
+      dockerfile: Dockerfile
       args:
         ## ------------------------------------------------------ ##
         ###  available profiles: local
@@ -13,7 +13,8 @@ services:
         ## ------------------------------------------------------ ##
         springprofileactive: local, dockermq, mock
     depends_on:
-      - ibm.mq
+      - ibm.mq1
+      - ibm.mq2
     ports:
       - '8080:8080'
     links:
@@ -27,11 +28,5 @@ services:
     ports:
       - '1414:1414'
       - '9443:9443'
-  ibm.mq2:
-    image: ibmcom/mq
-    environment:
-      LICENSE: 'accept'
-      MQ_QMGR_NAME: 'QM1'
-    ports:
-      - '1415:1415'
-      - '9444:9444'
+
+      

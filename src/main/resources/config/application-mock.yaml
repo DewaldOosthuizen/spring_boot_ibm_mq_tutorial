@@ -1,0 +1,4 @@
+# Application
+mq:
+  queue1:
+    mock: true

@@ -19,9 +19,23 @@ repositories {
 }
 
 dependencies {
+	// Spring
 	implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
-	compileOnly 'org.projectlombok:lombok'
-	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+    // IBM MQ
+    implementation 'org.springframework:spring-jms:4.3.3.RELEASE'
+    implementation 'com.ibm.mq:com.ibm.mq.allclient:9.0.4.0'
+
+    //LOMBOK
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+
+    //JSON
+    implementation 'com.google.code.gson:gson:2.8.5'
+
+    //commons
+    compile 'org.apache.commons:commons-lang3:3.9'
+    compile 'org.apache.commons:commons-collections4:4.3'
 }
