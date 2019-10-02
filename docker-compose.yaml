@@ -13,12 +13,14 @@ services:
         ## ------------------------------------------------------ ##
         springprofileactive: local, dockermq, mock
     depends_on:
-      - ibm.mq
+      - ibm.mq1
+      - ibm.mq2
     ports:
       - '8080:8080'
     links:
-      - ibm.mq
-  ibm.mq:
+      - ibm.mq1
+      - ibm.mq2
+  ibm.mq1:
     image: ibmcom/mq
     environment:
       LICENSE: 'accept'
@@ -26,5 +28,13 @@ services:
     ports:
       - '1414:1414'
       - '9443:9443'
+  ibm.mq2:
+    image: ibmcom/mq
+    environment:
+      LICENSE: 'accept'
+      MQ_QMGR_NAME: 'QM1'
+    ports:
+      - '1415:1414'
+      - '9444:9443'
 
       

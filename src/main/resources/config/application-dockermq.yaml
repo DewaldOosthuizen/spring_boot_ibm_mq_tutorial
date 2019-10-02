@@ -7,7 +7,7 @@ spring:
           app-description: Queue1
           app-name: Queue1 dockermq
           channel: DEV.ADMIN.SVRCONN
-          host: ibm.mq
+          host: ibm.mq1
           password: passw0rd
           username: admin
           port: 1414
@@ -21,7 +21,7 @@ spring:
           app-description: Queue2
           app-name: Queue2 dockermq
           channel: DEV.ADMIN.SVRCONN
-          host: ibm.mq
+          host: ibm.mq2
           password: passw0rd
           username: admin
           port: 1414
