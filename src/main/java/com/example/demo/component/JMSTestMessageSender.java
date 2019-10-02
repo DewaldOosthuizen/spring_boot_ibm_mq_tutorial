@@ -55,7 +55,7 @@ public class JMSTestMessageSender {
          * 
          * @throws JMSException
          */
-        @Scheduled(fixedDelay = (600 * 1000)) // seconds times 1000 for milliseconds
+        @Scheduled(fixedDelay = 6000) // seconds times 1000 for milliseconds
         public void sendTestIncomingMessage() throws JMSException {
                 Event message = createTestEvent();
                 JMSPublisher.publishEvent(config.getListenTopic(),
