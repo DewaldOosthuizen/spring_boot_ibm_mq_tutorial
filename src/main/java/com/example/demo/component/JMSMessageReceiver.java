@@ -54,7 +54,7 @@ public class JMSMessageReceiver {
      * @param message the message
      * @throws JMSException the jms exception
      */
-    @JmsListener(destination = "${spring.application.ibm.mq.queue1.listen-topic}", containerFactory = "incomingJmsListenerContainerFactory")
+    @JmsListener(destination = "${spring.queues.queue1.listen-topic}", containerFactory = "incomingJmsListenerContainerFactory")
     public void receiveIncomingMessage(TextMessage message) throws JMSException {
        
             log.info("\n >>>>>>>>>>>>>>>>>>>>>>>> NEW MESSAGE INCOMING >>>>>>>>>>>>>>>>>>>>>>>> \n");

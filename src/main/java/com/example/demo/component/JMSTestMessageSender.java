@@ -26,7 +26,7 @@ import com.example.demo.service.JmsPublisher;
  */
 @Slf4j
 @Component
-@ConditionalOnExpression(value = "${spring.application.ibm.mq.queue1.mock}")
+@ConditionalOnExpression(value = "${spring.queues.queue1.mock}")
 public class JMSTestMessageSender {
 
         /**

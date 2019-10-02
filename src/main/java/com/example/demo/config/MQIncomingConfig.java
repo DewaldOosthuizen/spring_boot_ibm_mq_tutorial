@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Configuration;
  * The type Mq incoming config.
  */
 @Configuration
-@ConfigurationProperties(prefix = "spring.application.ibm.mq.queue1")
+@ConfigurationProperties(prefix = "spring.queues.queue1")
 public class MQIncomingConfig extends MQConfig {
     // maps all the incoming queue settings
 }
