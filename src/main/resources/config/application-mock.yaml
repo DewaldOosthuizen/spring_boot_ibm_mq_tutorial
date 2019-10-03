@@ -1,7 +1,5 @@
 # Application
 spring:
-  application:
-    ibm:
-      mq:
-        queue1:
-          mock: true
+  queues:
+    queue1:
+      mock: true
