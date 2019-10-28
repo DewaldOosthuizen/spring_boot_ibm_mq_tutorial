@@ -2,4 +2,4 @@
 spring:
   queues:
     queue1:
-      mock: true
+      mockit: true

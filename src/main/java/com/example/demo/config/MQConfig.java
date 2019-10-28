@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public abstract class MQConfig {
+    private boolean mockit;
     private boolean disabled;
     private String host;
     private String queueManager;

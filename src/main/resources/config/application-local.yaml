@@ -4,7 +4,7 @@ spring:
     name: demo
   queues:
     queue1:
-      mock: false
+      mockit: false
       disabled: false
       app-description: queue1
       app-name: queue1 local
@@ -19,7 +19,7 @@ spring:
       concurrent: 3
       pubSub: false
     queue2:
-      mock: false
+      mockit: false
       disabled: false
       app-description: queue2
       app-name: queue2 local

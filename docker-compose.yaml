@@ -9,9 +9,9 @@ services:
       args:
         ## ------------------------------------------------------ ##
         ###  available profiles: local
-        ###  available override/extend profiles: dockermq, mock
+        ###  available override/extend profiles: dockermq, mockit
         ## ------------------------------------------------------ ##
-        springprofileactive: local, dockermq, mock
+        springprofileactive: local, dockermq, mockit
     depends_on:
       - ibm.mq1
       - ibm.mq2

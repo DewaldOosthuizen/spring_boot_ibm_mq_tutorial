@@ -1,6 +1,7 @@
 spring:
   queues:
     queue1:
+      mockit: false
       disabled: false
       app-description: Queue1
       app-name: Queue1 dockermq
@@ -15,6 +16,7 @@ spring:
       concurrent: 3
       pubSub: false
     queue2:
+      mockit: false
       disabled: false
       app-description: Queue2
       app-name: Queue2 dockermq

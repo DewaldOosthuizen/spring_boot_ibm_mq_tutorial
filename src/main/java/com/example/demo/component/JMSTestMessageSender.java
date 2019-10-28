@@ -26,7 +26,7 @@ import com.example.demo.service.JmsPublisher;
  */
 @Slf4j
 @Component
-@ConditionalOnExpression(value = "${spring.queues.queue1.mock}")
+@ConditionalOnExpression(value = "${spring.queues.queue1.mockit}")
 public class JMSTestMessageSender {
 
         /**
@@ -49,22 +49,25 @@ public class JMSTestMessageSender {
         private JmsTemplate jmsTemplate;
 
         /**
-         * Send message. This scheduled task will place messages on the incoming queue simulation
+         * Send message. This scheduled task will place messages on the incoming queue simulating
          * line of business events flowing in from the queue. The real publisher used to place
          * messages on the outgoing queue is JmsPublisher.java
          * 
          * @throws JMSException
          */
-        @Scheduled(fixedDelay = 60000) // times seconds with 1000 to get milliseconds
+        @Scheduled(fixedDelay = 6000) // times seconds with 1000 to get milliseconds
         public void sendTestIncomingMessage() throws JMSException {
                 Event message = createTestEvent();
-                JMSPublisher.publishEvent(config.getHost(), config.getListenTopic(),
-                                JmsMessageCreator.createMessage(MQIncomingFactory.factory, message),
-                                jmsTemplate);
+                JMSPublisher.publishEvent(
+                        config.getHost(), 
+                        config.getListenTopic(),
+                        JmsMessageCreator.createMessage(MQIncomingFactory.factory, message),
+                        jmsTemplate
+                );
         }
 
         /**
-         * Create new business event sample event message.
+         * Create event sample event message.
          *
          * @return the event message
          */
