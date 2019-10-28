@@ -14,7 +14,7 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnExpression;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
-
+import java.util.UUID;
 import javax.jms.JMSException;
 
 import com.example.demo.service.JmsPublisher;
@@ -55,10 +55,10 @@ public class JMSTestMessageSender {
          * 
          * @throws JMSException
          */
-        @Scheduled(fixedDelay = 6000)
+        @Scheduled(fixedDelay = 60000) // times seconds with 1000 to get milliseconds
         public void sendTestIncomingMessage() throws JMSException {
                 Event message = createTestEvent();
-                JMSPublisher.publishEvent(config.getListenTopic(),
+                JMSPublisher.publishEvent(config.getHost(), config.getListenTopic(),
                                 JmsMessageCreator.createMessage(MQIncomingFactory.factory, message),
                                 jmsTemplate);
         }
@@ -70,9 +70,15 @@ public class JMSTestMessageSender {
          */
         public static Event createTestEvent() {
                 return Event.builder()
-                                .header(Header.builder().messageType("Income")
-                                                .subMessageType("Salary").build())
-                                .id("12345678").name("John").surname("Doe").build();
+                                .header(Header.builder()
+                                        .messageType("Income")
+                                        .subMessageType("Salary")
+                                        .build()
+                                )
+                                .id(UUID.randomUUID().toString())
+                                .name("John")
+                                .surname("Doe")
+                                .build();
 
         }
 

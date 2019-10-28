@@ -59,12 +59,15 @@ public class JMSMessageReceiver {
        
             log.info("\n >>>>>>>>>>>>>>>>>>>>>>>> NEW MESSAGE INCOMING >>>>>>>>>>>>>>>>>>>>>>>> \n");
             textMessage = message;
-            log.info("Read message from queue: \n <{}> \n :: red message from queue ::", message.getText());
+            log.info(":: Read message from queue: \n <{}> \n ::", message.getText());
             Event eventMessage = (Event) AppJsonUtils.convertMessageToClass(message.getText(), Event.class);
-            log.info("Convert message received: \n <{}> \n :: message converted ::", eventMessage);
+            log.info(":: Convert message received: \n <{}> \n ::", eventMessage);
 
-            // publish message to retail track and trace with the generated template
+            //Here you can do something with the received message before sending it to the outgoing queue
+
+            // publish message to outgoing queue
             jmsPublisher.publishEvent(
+                    config.getHost(),
                     config.getPublishTopic(),
                     textMessage,
                     jmsTemplate

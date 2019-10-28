@@ -23,11 +23,11 @@ public class JmsPublisher {
      * @param jmsTemplate the jms template
      * @throws JMSException
      */
-    public void publishEvent(String topic, TextMessage message, JmsTemplate jmsTemplate)
+    public void publishEvent(String queue, String topic, TextMessage message, JmsTemplate jmsTemplate)
             throws JMSException {
         log.info(String.format(
-                "Publishing to queue as TextMessage: \n %s\n :: published to queue on %s ::",
-                message.getText(), topic));
+                "Publishing to queue as TextMessage: \n %s\n :: published to %s on %s ::",
+                message.getText(), queue, topic));
         jmsTemplate.convertAndSend(topic, message);
     }
 }
