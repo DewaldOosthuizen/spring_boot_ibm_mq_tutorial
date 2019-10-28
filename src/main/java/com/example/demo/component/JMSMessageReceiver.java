@@ -2,7 +2,6 @@ package com.example.demo.component;
 
 import com.example.demo.domain.Event;
 import com.example.demo.service.JmsPublisher;
-import com.google.gson.JsonObject;
 
 import lombok.extern.slf4j.Slf4j;
 import com.example.demo.utils.AppJsonUtils;
@@ -11,11 +10,9 @@ import com.example.demo.config.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.jms.annotation.JmsListener;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.stereotype.Component;
-import javax.annotation.PostConstruct;
 import javax.jms.JMSException;
 import javax.jms.TextMessage;
 
@@ -62,7 +59,10 @@ public class JMSMessageReceiver {
             Event eventMessage = (Event) AppJsonUtils.convertMessageToClass(message.getText(), Event.class);
             log.info(":: Convert message received: \n <{}> \n ::", eventMessage);
 
-            //Here you can do something with the received message before sending it to the outgoing queue
+            /* 
+                Here you can do something with the received message before sending it to the outgoing queue
+                or handle the message and not pass it on to another queue.
+            */
 
             // publish message to outgoing queue
             jmsPublisher.publishEvent(

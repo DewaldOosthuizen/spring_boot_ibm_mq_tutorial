@@ -16,7 +16,7 @@ spring:
       queue-manager: QM1
       listen-topic: DEV.QUEUE.1
       publish-topic: DEV.QUEUE.2
-      concurrent: 3
+      concurrent: 1
       pubSub: false
     queue2:
       mockit: false
@@ -31,5 +31,5 @@ spring:
       queue-manager: QM1
       listen-topic: DEV.QUEUE.2
       publish-topic: DEV.QUEUE.3
-      concurrent: 3
+      concurrent: 1
       pubSub: false
