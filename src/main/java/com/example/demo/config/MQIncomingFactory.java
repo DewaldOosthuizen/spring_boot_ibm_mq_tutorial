@@ -8,7 +8,7 @@ import org.springframework.jms.config.DefaultJmsListenerContainerFactory;
 import org.springframework.jms.core.JmsTemplate;
 
 import javax.jms.ConnectionFactory;
-
+import javax.jms.JMSException;
 
 /**
  * The type Mq incoming factory.
@@ -39,7 +39,7 @@ public class MQIncomingFactory {
      * @return the default jms listener container factory
      */
     @Bean(name = "incomingJmsListenerContainerFactory")
-    public DefaultJmsListenerContainerFactory defaultJmsListenerContainerFactory() {
+    public DefaultJmsListenerContainerFactory defaultJmsListenerContainerFactory() throws JMSException {
         factory = mqConnectionFactory.connectionFactory(factory, config);
         return mqConnectionFactory.defaultJmsListenerContainerFactory(factory, config);
     }
@@ -50,7 +50,7 @@ public class MQIncomingFactory {
      * @return the jms template
      */
     @Bean(name = "incomingJmsTemplate")
-    public JmsTemplate incomingJmsTemplate() {
+    public JmsTemplate incomingJmsTemplate() throws JMSException {
         factory = mqConnectionFactory.connectionFactory(factory, config);
         return new JmsTemplate(factory);
     }

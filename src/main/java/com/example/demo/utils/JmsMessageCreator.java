@@ -1,10 +1,12 @@
 package com.example.demo.utils;
 
 import org.springframework.jms.core.MessageCreator;
-
-import javax.jms.*;
-
 import com.example.demo.domain.Event;
+import javax.jms.JMSException;
+import javax.jms.TextMessage;
+import javax.jms.ConnectionFactory;
+import javax.jms.Connection;
+import javax.jms.Session;
 
 /**
  * The type Jms message creator.

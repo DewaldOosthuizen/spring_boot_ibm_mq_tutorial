@@ -8,6 +8,7 @@ import org.springframework.jms.config.DefaultJmsListenerContainerFactory;
 import org.springframework.jms.core.JmsTemplate;
 
 import javax.jms.ConnectionFactory;
+import javax.jms.JMSException;
 
 
 /**
@@ -40,7 +41,7 @@ public class MQOutgoingFactory {
      * @return the default jms listener container factory
      */
     @Bean(name = "outgoingJmsListenerContainerFactory")
-    public DefaultJmsListenerContainerFactory defaultJmsListenerContainerFactory() {
+    public DefaultJmsListenerContainerFactory defaultJmsListenerContainerFactory() throws JMSException {
         factory = mqConnectionFactory.connectionFactory(factory, config);
         return mqConnectionFactory.defaultJmsListenerContainerFactory(factory, config);
     }
@@ -52,7 +53,7 @@ public class MQOutgoingFactory {
      * @return the jms template
      */
     @Bean(name = "outgoingJmsTemplate")
-    public JmsTemplate outgoingJmsTemplate() {
+    public JmsTemplate outgoingJmsTemplate() throws JMSException {
         factory = mqConnectionFactory.connectionFactory(factory, config);
         JmsTemplate template = new JmsTemplate(factory);
         template.setPubSubDomain(config.isPubSub());

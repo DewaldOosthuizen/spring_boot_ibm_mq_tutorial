@@ -31,7 +31,7 @@ ENV SPRING_PROFILES_ACTIVE=${springprofileactive}
 
 # copy the jar file from local to work dir
 # NOTE: requires you to run './gradlew clean build'
-ADD build/libs/$JAVA_APP_JAR /app/demo.jar
+COPY build/libs/$JAVA_APP_JAR /app/demo.jar
 
 # expose ports
 EXPOSE 8080

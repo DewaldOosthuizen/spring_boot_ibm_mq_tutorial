@@ -22,7 +22,7 @@ public class MQConnectionFactory {
      * Default jms listener container factory default jms listener container factory.
      *
      * @param factory the factory
-     * @param config  the config
+     * @param config the config
      * @return the default jms listener container factory
      */
     public DefaultJmsListenerContainerFactory defaultJmsListenerContainerFactory(
@@ -43,10 +43,10 @@ public class MQConnectionFactory {
      * Connection factory connection factory.
      *
      * @param factory the factory
-     * @param config  the config
+     * @param config the config
      * @return the connection factory
      */
-    public ConnectionFactory connectionFactory(ConnectionFactory factory, MQConfig config) {
+    public ConnectionFactory connectionFactory(ConnectionFactory factory, MQConfig config) throws JMSException {
         if (factory == null) {
             MQXAConnectionFactory connectionFactory = new MQXAConnectionFactory();
             UserCredentialsConnectionFactoryAdapter credentials =
@@ -55,27 +55,21 @@ public class MQConnectionFactory {
             log.info(String.format("\n /************** MQ CONFIG \n %s \n **************/",
                     config.toString()));
 
-            try {
-                connectionFactory.setHostName(config.getHost());
-                connectionFactory.setPort(config.getPort());
-                connectionFactory.setQueueManager(config.getQueueManager());
-                connectionFactory.setChannel(config.getChannel());
-                connectionFactory.setTransportType(WMQConstants.WMQ_CM_CLIENT);
-                connectionFactory.setAppName(config.getAppName());
-                connectionFactory.setDescription(config.getAppDescription());
+            connectionFactory.setHostName(config.getHost());
+            connectionFactory.setPort(config.getPort());
+            connectionFactory.setQueueManager(config.getQueueManager());
+            connectionFactory.setChannel(config.getChannel());
+            connectionFactory.setTransportType(WMQConstants.WMQ_CM_CLIENT);
+            connectionFactory.setAppName(config.getAppName());
+            connectionFactory.setDescription(config.getAppDescription());
 
-                if (config.getUserName() != null) {
-                    credentials.setUsername(config.getUserName());
-                    credentials.setPassword(config.getPassword());
-                }
-
-                credentials.setTargetConnectionFactory(connectionFactory);
-                factory = credentials;
-
-            } catch (JMSException e) {
-                throw new RuntimeException(e);
+            if (config.getUserName() != null) {
+                credentials.setUsername(config.getUserName());
+                credentials.setPassword(config.getPassword());
             }
 
+            credentials.setTargetConnectionFactory(connectionFactory);
+            return credentials;
         }
 
         return factory;
